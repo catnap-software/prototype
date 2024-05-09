@@ -14,11 +14,9 @@ UCLASS()
 class AURA_API AEnemyCharacter : public ABaseCharacter, public IHighlightInterface
 {
 	GENERATED_BODY()
-
 public:
+	AEnemyCharacter();
 	virtual void HighlightActor() override;
 	virtual void UnHighlightActor() override;
 
-	UPROPERTY(BlueprintReadOnly)
-	bool bHighlighted = false; 
 };
