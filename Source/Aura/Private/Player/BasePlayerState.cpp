@@ -21,3 +21,7 @@ UAbilitySystemComponent* ABasePlayerState::GetAbilitySystemComponent() const
 {
 	return AbilitySystemComponent;
 }
+
+void ABasePlayerState::PossesedBy()
+{
+}
