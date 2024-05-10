@@ -17,6 +17,7 @@ UCLASS()
 class AURA_API ABasePlayerState : public APlayerState, public IAbilitySystemInterface
 {
 	GENERATED_BODY()
+	
 public:
 	ABasePlayerState();
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
@@ -29,4 +30,6 @@ protected:
 
 	UPROPERTY()
 	TObjectPtr<UAttributeSet> AttributeSet;
+
+	virtual void PossesedBy();
 };
