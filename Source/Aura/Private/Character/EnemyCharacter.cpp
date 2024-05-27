@@ -7,6 +7,7 @@
 #include "GAS/BaseAbilitySystemComponent.h"
 #include "GAS/BaseAttributeSet.h"
 
+
 AEnemyCharacter::AEnemyCharacter()
 {
 	GetMesh()->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
@@ -38,6 +39,13 @@ void AEnemyCharacter::UnHighlightActor()
 void AEnemyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+	InitAbilityActorInfo();
 
+	
+}
+
+void AEnemyCharacter::InitAbilityActorInfo()
+{
 	AbilitySystemComponent->InitAbilityActorInfo(this, this);
+	Cast<UBaseAbilitySystemComponent>(AbilitySystemComponent)->AbilityActorInfoSet();
 }

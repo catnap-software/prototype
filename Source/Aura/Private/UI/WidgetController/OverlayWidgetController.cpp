@@ -2,7 +2,6 @@
 
 
 #include "UI/WidgetController/OverlayWidgetController.h"
-
 #include "GAS/BaseAttributeSet.h"
 
 void UOverlayWidgetController::BroadcastInitialValues()
