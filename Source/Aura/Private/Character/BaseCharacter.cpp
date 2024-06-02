@@ -3,6 +3,9 @@
 
 #include "Character/BaseCharacter.h"
 
+#include "AbilitySystemComponent.h"
+#include "Kismet2/BlueprintEditorUtils.h"
+
 
 ABaseCharacter::ABaseCharacter()
 {
@@ -26,9 +29,18 @@ void ABaseCharacter::BeginPlay()
 	
 }
 
+void ABaseCharacter::InitializePrimaryAttributes() const
+{
+	check(IsValid(GetAbilitySystemComponent()));
+	check(DefaultPrimaryAttributes);
+	const FGameplayEffectContextHandle ContextHandle = GetAbilitySystemComponent()->MakeEffectContext();
+	const FGameplayEffectSpecHandle SpecHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(DefaultPrimaryAttributes, 1.f, ContextHandle);
+	GetAbilitySystemComponent()->ApplyGameplayEffectSpecToTarget(*SpecHandle.Data.Get(), GetAbilitySystemComponent());
+}
+
 void ABaseCharacter::InitAbilityActorInfo()
 {
-	
+	InitializePrimaryAttributes();
 }
 
 
