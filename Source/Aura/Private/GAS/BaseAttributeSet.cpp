@@ -12,9 +12,7 @@ UBaseAttributeSet::UBaseAttributeSet()
 	InitHealth(50.f);
 	InitMaxHealth(100.f);
 	InitMana(50.f);
-	InitMaxMana(100.f);
-	InitStamina(50.f);
-	InitMaxStamina(100.f);
+
 }
 
 void UBaseAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const

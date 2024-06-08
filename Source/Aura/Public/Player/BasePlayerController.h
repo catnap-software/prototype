@@ -39,7 +39,6 @@ private:
 	void Move(const FInputActionValue& InputActionValue);
 
 	void CursorTrace();
-
 	TScriptInterface<IHighlightInterface> LastActor;
 	TScriptInterface<IHighlightInterface> ThisActor;
 	

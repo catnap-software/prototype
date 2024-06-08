@@ -43,6 +43,14 @@ void APlayerCharacter::OnRep_PlayerState()
 	
 }
 
+int32 APlayerCharacter::GetPlayerLevel()
+{
+	const ABasePlayerState* BasePlayerState = GetPlayerState<ABasePlayerState>();
+	check (BasePlayerState);
+	return BasePlayerState->GetPlayerLevel();
+	
+}
+
 void APlayerCharacter::InitAbilityActorInfo()
 {
 	ABasePlayerState* BasePlayerState = GetPlayerState<ABasePlayerState>();
@@ -59,5 +67,5 @@ void APlayerCharacter::InitAbilityActorInfo()
 			BaseHUD->InitOverlay(BasePlayerController, BasePlayerState, AbilitySystemComponent, AttributeSet);
 		}
 	}
-	InitializePrimaryAttributes();
+	InitializeDefaultAttributes();
 }

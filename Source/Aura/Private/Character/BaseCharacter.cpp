@@ -3,7 +3,9 @@
 
 #include "Character/BaseCharacter.h"
 
+#include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystemComponent.h"
+#include "AbilitySystemStats.h"
 #include "Kismet2/BlueprintEditorUtils.h"
 
 
@@ -29,19 +31,32 @@ void ABaseCharacter::BeginPlay()
 	
 }
 
-void ABaseCharacter::InitializePrimaryAttributes() const
+void ABaseCharacter::InitAbilityActorInfo()
+{
+	
+}
+
+
+void ABaseCharacter::ApplyEffectToSelf(TSubclassOf<UGameplayEffect> GameplayEffectClass, float Level) const
 {
 	check(IsValid(GetAbilitySystemComponent()));
-	check(DefaultPrimaryAttributes);
-	const FGameplayEffectContextHandle ContextHandle = GetAbilitySystemComponent()->MakeEffectContext();
-	const FGameplayEffectSpecHandle SpecHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(DefaultPrimaryAttributes, 1.f, ContextHandle);
+	check(GameplayEffectClass);
+	FGameplayEffectContextHandle ContextHandle = GetAbilitySystemComponent()->MakeEffectContext();
+	ContextHandle.AddSourceObject(this);
+	const FGameplayEffectSpecHandle SpecHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(GameplayEffectClass, Level, ContextHandle);
 	GetAbilitySystemComponent()->ApplyGameplayEffectSpecToTarget(*SpecHandle.Data.Get(), GetAbilitySystemComponent());
 }
 
-void ABaseCharacter::InitAbilityActorInfo()
+
+void ABaseCharacter::InitializeDefaultAttributes() const
 {
-	InitializePrimaryAttributes();
+
+	ApplyEffectToSelf(DefaultPrimaryAttributes, 1);
+	ApplyEffectToSelf(DefaultSecondaryAttributes, 1);
 }
+
+
+
 
 
 
